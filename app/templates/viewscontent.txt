@@ -1,0 +1,23 @@
+ try:
+               
+                Employee_Name=response_data['employee_clock_info'][0]['Employee_Name']
+                print("employee name is",Employee_Name)
+                Employee_ID=response_data['employee_clock_info'][0]['Employee_id']
+                
+                print("employee clock inof",response_data['employee_clock_info'][0])
+                Employee_Attendance_Info=response_data['employee_clock_info']
+                print(Employee_Attendance_Info)
+                 # Employee_Count=response_data['Total_employees'][0]['COUNT(Employee_id)']
+                # All_Names_Ids=response_data['all_employee_name_id']
+                
+                return render(request,'search.html',{"Employee_Attendance_Info":Employee_Attendance_Info,"Employee_ID":Employee_ID,
+                                                     "username":username,'email':email,'user_id':user_id,'user_type':user_type,"Employee_Count":Employee_Count,"All_Names_Ids":All_Names_Ids,"Employee_Name":Employee_Name})
+            except Exception as e:
+                
+                Employee_Name=user_name
+                Employee_ID=user_id
+                # Employee_Count=response_data['Total_employees'][0]['COUNT(Employee_id)']
+                # All_Names_Ids=response_data['all_employee_name_id']
+                print("error occuring in get_Employee_Attendance mat be data not found")
+                return render(request,'search.html',{"Employee_ID":Employee_ID,
+                                                     "username":username,'email':email,'user_id':user_id,'user_type':user_type,"Employee_Count":Employee_Count,"All_Names_Ids":All_Names_Ids,"Employee_Name":Employee_Name})

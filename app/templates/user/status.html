@@ -1,0 +1,353 @@
+{% extends 'navAside.html' %} {% block title %}
+<title>Leave Management</title>
+{% endblock %}
+<!-- laptop -->
+{% block emp1_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp1_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp1_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp1_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash1 %}
+<a href="{% url 'search' username user_type email user_id %}" class="decoration-none">Dashboard</a>
+{% endblock %} {% block org1 %}
+<a href="{% url 'org' username user_type email user_id %}" class="decoration-none">Organization</a>
+{% endblock %} {% block myteam1 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %}
+{% block hol1 %}
+<a href="{% url 'Fest_Info' username user_type email user_id %}" class="decoration-none">Holidays Info</a>
+{% endblock %}
+<!-- mobile -->
+{% block emp2_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp2_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp2_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp2_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash2 %}
+<a href="" class="decoration-none">Dashboard</a>
+{% endblock %} {% block org2 %} {% endblock %} {% block myteam2 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %} {% block content %}
+
+<div
+  class="white-block bg-white absolute h-[100vh] w-[100%] opacity-75 z-40 hidden"
+  onclick="removeHol()"
+></div>
+
+<div
+  class="popup z-50 hidden absolute px-[20px] py-[15px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit text-white text-[12px] bg-[#1e1e1e] rounded-[20px] w-[450px]"
+>
+  <form
+    class="content flex flex-col justify-between px-[10px] py-[15px] gap-[10px]"
+    action="{% url 'status' username user_type email user_id  %}"
+    method="post"
+  >
+    <h3 class="font-normal text-[20px] mx-[0px] my-[5px]">Todays Status</h3>
+    <div class="mt-[3px] *:text-white">
+      <p class="mb-[4px] text-[16px]">Date</p>
+      <input
+        class="rounded-md px-2 py-1 bg-transparent border-2 border-white"
+        type="date"
+        name="date"
+        id=""
+      />
+    </div>
+    <div class="mt-[8px]">
+      <p class="mb-[4px] text-[16px]">Complete Tasks</p>
+      <textarea
+        name="completed"
+        type="text"
+        rows="1 "
+        class="rounded-md px-2 py-1 text-[14px] w-[100%] text-wrap bg-transparent border-2 border-white"
+      ></textarea>
+      <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+    </div>
+    <div class="mt-[8px]">
+      <p class="mb-[4px] text-[16px]">Status</p>
+      <textarea
+        name="status"
+        type="text"
+        rows="3"
+        class="rounded-md px-2 py-1 text-[14px] w-[100%] text-wrap bg-transparent border-2 border-white"
+      ></textarea>
+    </div>
+    <div class="mt-[8px]">
+      <p class="mb-[4px] text-[16px]">Target Tasks</p>
+      <textarea
+        name="targets"
+        type="text"
+        rows="3"
+        class="rounded-md px-2 py-1 text-[14px] w-[100%] text-wrap bg-transparent border-2 border-white"
+      ></textarea>
+    </div>
+    <div class="mt-[8px]">
+      <p class="mb-[4px] text-[16px]">Issues</p>
+      <textarea
+        type="text"
+        rows="3"
+        class="rounded-md px-2 py-1 text-[14px] w-[100%] text-wrap bg-transparent border-2 border-white"
+      ></textarea>
+    </div>
+    <div class="flex items-end w-[100%] justify-end">
+      <button
+        type="submit"
+        class="decoration-none w-fit mt-[15px] cursor-pointer px-[25px] py-[10px] bg-[#319131] text-[14px] rounded-[10px] text-white border-none"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div
+  class="block z-10 absolute top-[11vh] left-[0vw] md:left-[13vw] text-justify w-[100%] md:w-[calc(100%-180px)] overflow-hidden"
+>
+  <div
+    class="block-nav fixed w-[100%] flex flex-row items-center gap-[40px] md:gap-[50px] bg-[#F1F9FF] pl-[5vw] h-[5vh]"
+  >
+    <h1 class="font-semibold text-sm md:text-base">Dashboard</h1>
+    <div class="leave flex flex-row items-center gap-[5px]">
+      <a href="{% url 'check' username user_type email user_id %}">Leave</a>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.6675 1.875C6.6675 1.70924 6.73335 1.55027 6.85056 1.43306C6.96777 1.31585 7.12674 1.25 7.2925 1.25H12.7087C12.8745 1.25 13.0335 1.31585 13.1507 1.43306C13.2679 1.55027 13.3337 1.70924 13.3337 1.875C13.3337 2.04076 13.2679 2.19973 13.1507 2.31694C13.0335 2.43415 12.8745 2.5 12.7087 2.5H12.5V3.75H13.75C14.413 3.75 15.0489 4.01339 15.5178 4.48223C15.9866 4.95107 16.25 5.58696 16.25 6.25V15C16.25 15.663 15.9866 16.2989 15.5178 16.7678C15.0489 17.2366 14.413 17.5 13.75 17.5V18.125C13.75 18.2908 13.6842 18.4497 13.5669 18.5669C13.4497 18.6842 13.2908 18.75 13.125 18.75C12.9592 18.75 12.8003 18.6842 12.6831 18.5669C12.5658 18.4497 12.5 18.2908 12.5 18.125V17.5H7.5V18.125C7.5 18.2908 7.43415 18.4497 7.31694 18.5669C7.19973 18.6842 7.04076 18.75 6.875 18.75C6.70924 18.75 6.55027 18.6842 6.43306 18.5669C6.31585 18.4497 6.25 18.2908 6.25 18.125V17.5C5.58696 17.5 4.95107 17.2366 4.48223 16.7678C4.01339 16.2989 3.75 15.663 3.75 15V6.25C3.75 5.58696 4.01339 4.95107 4.48223 4.48223C4.95107 4.01339 5.58696 3.75 6.25 3.75H7.5V2.5H7.2925C7.12674 2.5 6.96777 2.43415 6.85056 2.31694C6.73335 2.19973 6.6675 2.04076 6.6675 1.875ZM8.75 2.5V3.75H11.25V2.5H8.75ZM6.25 5C5.91848 5 5.60054 5.1317 5.36612 5.36612C5.1317 5.60054 5 5.91848 5 6.25V15C5 15.3315 5.1317 15.6495 5.36612 15.8839C5.60054 16.1183 5.91848 16.25 6.25 16.25H13.75C14.0815 16.25 14.3995 16.1183 14.6339 15.8839C14.8683 15.6495 15 15.3315 15 15V6.25C15 5.91848 14.8683 5.60054 14.6339 5.36612C14.3995 5.1317 14.0815 5 13.75 5H6.25ZM6.25 8.125C6.25 7.95924 6.31585 7.80027 6.43306 7.68306C6.55027 7.56585 6.70924 7.5 6.875 7.5H13.125C13.2908 7.5 13.4497 7.56585 13.5669 7.68306C13.6842 7.80027 13.75 7.95924 13.75 8.125C13.75 8.29076 13.6842 8.44973 13.5669 8.56694C13.4497 8.68415 13.2908 8.75 13.125 8.75H6.875C6.70924 8.75 6.55027 8.68415 6.43306 8.56694C6.31585 8.44973 6.25 8.29076 6.25 8.125Z"
+          fill="black"
+        />
+      </svg>
+    </div>
+    <div class="attend flex flex-row items-center gap-[5px]">
+      <a
+        href="{% url 'clock' username user_type email user_id %}"
+        class="decoration-none text-sm"
+        >Attendance</a
+      >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.71484 10.7143C4.7148 11.6336 4.85888 12.5439 5.13885 13.3932C5.41882 14.2425 5.8292 15.0142 6.34656 15.6643C6.86392 16.3144 7.47812 16.83 8.1541 17.1818C8.83008 17.5336 9.55459 17.7147 10.2863 17.7147C11.018 17.7147 11.7425 17.5336 12.4184 17.1818C13.0944 16.83 13.7086 16.3144 14.226 15.6643C14.7433 15.0142 15.1537 14.2425 15.4337 13.3932C15.7137 12.5439 15.8577 11.6336 15.8577 10.7143C15.8577 9.79499 15.7137 8.8847 15.4337 8.03537C15.1537 7.18604 14.7433 6.41432 14.226 5.76427C13.7086 5.11421 13.0944 4.59856 12.4184 4.24675C11.7425 3.89494 11.018 3.71387 10.2863 3.71387C9.55459 3.71387 8.83008 3.89494 8.1541 4.24675C7.47812 4.59856 6.86392 5.11421 6.34656 5.76427C5.8292 6.41432 5.41882 7.18604 5.13885 8.03537C4.85888 8.8847 4.7148 9.79499 4.71484 10.7143Z"
+          fill="#B3D1F4"
+        />
+        <path
+          d="M1.14342 10.2858C0.857701 10.2858 0.714844 10.0001 0.714844 9.71436C0.714844 9.00007 1.00056 7.42864 2.00056 5.71436C2.14342 5.42864 2.42913 5.42864 2.71484 5.5715C3.00056 5.71436 3.14342 6.14293 2.8577 6.28578C2.00056 8.00007 1.71484 9.28578 1.71484 9.85721C1.71484 10.1429 1.42913 10.2858 1.14342 10.2858ZM3.14342 5.5715C3.00056 5.5715 2.8577 5.5715 2.8577 5.42864C2.57199 5.28578 2.57199 4.85721 2.71484 4.71436C3.71484 3.42864 5.00056 2.42864 6.28627 1.71436C6.57199 1.5715 6.8577 1.71436 7.00056 2.00007C7.14342 2.28578 7.00056 2.5715 6.71484 2.71436C5.57199 3.28578 4.57199 4.14293 3.57199 5.28578C3.57199 5.42864 3.42913 5.5715 3.14342 5.5715ZM8.28627 2.14293C8.00056 2.14293 7.8577 2.00007 7.71484 1.71436C7.71484 1.42864 7.8577 1.14293 8.14342 1.00007C9.00056 0.714355 10.0006 0.714355 11.0006 0.714355C11.4291 0.857213 11.572 1.14293 11.572 1.42864C11.572 1.71436 11.2863 2.00007 11.0006 2.00007C10.1434 1.85721 9.28627 1.85721 8.28627 2.14293C8.42913 2.14293 8.42913 2.14293 8.28627 2.14293ZM15.1434 3.14293C15.0006 3.14293 15.0006 3.14293 14.8577 3.00007C14.0006 2.42864 13.0006 2.14293 12.0006 1.85721C11.8577 2.00007 11.572 1.71436 11.7148 1.42864C11.7148 1.14293 12.0006 1.00007 12.2863 1.00007C13.4291 1.28578 14.4291 1.5715 15.4291 2.28578C15.7148 2.42864 15.7148 2.71436 15.572 3.00007C15.572 3.14293 15.2863 3.14293 15.1434 3.14293ZM19.4291 11.7144C19.1434 11.7144 18.8577 11.4286 18.8577 11.1429C18.7148 8.00007 17.7148 5.5715 16.0006 4.00007C15.7148 3.85721 15.7148 3.42864 16.0006 3.28578C16.1434 3.00007 16.572 3.00007 16.7148 3.28578C18.572 5.00007 19.7148 7.71436 19.8577 11.1429C20.0006 11.4286 19.7148 11.7144 19.4291 11.7144Z"
+          fill="black"
+        />
+        <path
+          d="M16.1434 17.8572H16.0006C15.7148 17.7144 15.572 17.4286 15.7148 17.1429C15.7148 17.1429 16.0006 16.2858 16.4291 14.5715C16.8577 12.8572 16.572 10.5715 16.572 10.5715C16.572 8.14293 15.1434 5.85722 12.8577 4.85722C12.572 4.71436 12.4291 4.42864 12.572 4.14293C12.7148 3.85722 13.0006 3.71436 13.2863 3.85722C15.8577 5.00007 17.572 7.5715 17.572 10.4286C17.572 10.4286 17.8577 12.8572 17.4291 14.7144C17.0006 16.5715 16.572 17.4286 16.572 17.4286C16.4291 17.7144 16.2863 17.8572 16.1434 17.8572ZM6.57199 5.42864C6.42913 5.42864 6.28627 5.28579 6.14341 5.14293C6.00056 5.00007 6.14341 4.71436 6.28627 4.5715C7.8577 3.42864 9.71484 3.00007 11.572 3.42864C11.8577 3.42864 12.0006 3.71436 12.0006 4.00007C12.0006 4.28579 11.7148 4.42864 11.4291 4.42864C9.8577 4.14293 8.28627 4.42864 7.00056 5.42864H6.57199ZM1.28627 13.5715C1.00056 13.5715 0.857701 13.4286 0.714844 13.1429C0.714844 12.8572 0.857701 12.5715 1.14342 12.5715C1.14342 12.5715 1.71484 12.4286 2.28627 11.8572C2.71484 11.4286 3.14341 10.7144 3.28627 10.4286C3.28627 8.85722 3.8577 7.28579 4.8577 6.00007C5.00056 5.71436 5.42913 5.5715 5.57199 5.85722C5.8577 6.00007 5.8577 6.28579 5.71484 6.5715C4.8577 7.71436 4.28627 9.00007 4.28627 10.4286V10.5715C4.28627 10.7144 3.8577 12.0001 3.00056 12.5715C2.14342 13.2858 1.42913 13.5715 1.42913 13.5715H1.28627Z"
+          fill="black"
+        />
+        <path
+          d="M2.42866 15.4285C2.2858 15.4285 2.14294 15.2857 2.00009 15.1428C1.85723 14.8571 1.85723 14.5714 2.14294 14.4285C2.14294 14.4285 4.00009 13.1428 4.57151 12.7142C4.71437 12.5714 5.14294 11.8571 5.2858 11.1428C5.2858 9.99996 6.00009 7.99996 6.71437 7.14282C6.71437 7.14282 7.00009 6.71425 7.71437 6.28568C8.2858 5.99996 9.00009 5.71425 9.71437 5.71425C10.0001 5.57139 10.2858 5.71425 10.2858 5.99996C10.2858 6.28568 10.1429 6.57139 9.85723 6.57139C9.2858 6.57139 8.85723 6.71425 8.42866 6.99996C7.85723 7.42853 7.57151 7.71425 7.57151 7.71425C7.00009 8.42853 6.2858 10.2857 6.2858 11.2857V11.4285C6.14294 11.8571 5.71437 13.1428 5.14294 13.7142C4.71437 14 2.85723 15.2857 2.71437 15.4285H2.42866ZM13.7144 8.57139C13.5715 8.57139 13.4287 8.57139 13.2858 8.42853C12.8572 7.71425 12.1429 7.14282 11.2858 6.8571C11.0001 6.71425 10.8572 6.42853 11.0001 6.14282C11.0001 5.8571 11.4287 5.71425 11.7144 5.8571C12.7144 6.28567 13.7144 6.99996 14.2858 7.71425C14.4287 7.99996 14.4287 8.28568 14.1429 8.42853C14.0001 8.57139 13.8572 8.57139 13.7144 8.57139ZM14.1429 14C13.7144 13.8571 13.5715 13.5714 13.5715 13.2857C13.7144 12.8571 13.7144 12.5714 13.8572 12.4285C14.0001 11.8571 14.0001 10.5714 14.0001 10.5714C14.0001 10.2857 14.0001 9.8571 13.8572 9.57139C13.8572 9.28568 14.0001 8.99996 14.2858 8.8571C14.5715 8.71425 14.8572 8.99996 15.0001 9.28568C15.1429 9.71425 15.1429 10.1428 15.1429 10.5714C15.1429 10.5714 15.0001 12 15.0001 12.5714C15.0001 12.7142 14.8572 13 14.8572 13.4285C14.5715 13.7142 14.4287 14 14.1429 14Z"
+          fill="black"
+        />
+        <path
+          d="M13.0002 18.1429H12.8574C12.5717 18 12.4288 17.7143 12.5717 17.4286C12.5717 17.4286 13.0002 15.8571 13.4288 14.4286C13.4288 14.1429 13.8574 14 14.1431 14C14.4288 14 14.5717 14.2857 14.5717 14.7143C14.286 16.1429 13.7145 17.7143 13.7145 17.7143C13.4288 18 13.286 18.1429 13.0002 18.1429Z"
+          fill="black"
+        />
+        <path
+          d="M10.7155 18.2859C10.2869 18.143 10.1441 17.8573 10.1441 17.5716L11.7155 11.143C12.0012 10.2859 11.4298 9.42871 10.5726 9.143C9.71549 9.00014 8.71549 9.57157 8.57263 10.4287L7.14406 14.5716L4.28692 16.8573C4.0012 17.143 3.57263 17.143 3.42977 16.8573C3.28692 16.5716 3.28692 16.2859 3.57263 16.143L6.28692 14.0001L7.57263 10.2859C7.57263 9.57157 8.14406 8.85728 8.71549 8.57157C9.28692 8.143 10.1441 8.00014 10.8583 8.28585C12.2869 8.57157 13.2869 10.0001 12.8583 11.5716L11.2869 18.0001C11.2869 18.143 11.0012 18.2859 10.7155 18.2859Z"
+          fill="black"
+        />
+        <path
+          d="M7.57124 18.4287H7.28552C6.99981 18.2859 6.99981 18.0001 7.14266 17.7144L8.71409 14.8573L9.57124 10.8573C9.57124 10.5716 9.85695 10.4287 10.1427 10.4287C10.4284 10.4287 10.5712 10.7144 10.5712 11.0001L9.71409 15.2859L7.99981 18.2859C7.99981 18.2859 7.71409 18.4287 7.57124 18.4287Z"
+          fill="black"
+        />
+      </svg>
+    </div>
+    <div class="status flex flex-row items-center gap-[5px]">
+      <a
+        href="{% url 'status' username user_type email user_id  %}"
+        class="decoration-none text-xs md:text-sm text-[#0275D8]"
+        >Status</a
+      >
+      <svg
+        width="15"
+        height="14"
+        viewBox="0 0 15 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.5 14C1.0875 14 0.7345 13.8558 0.441 13.5675C0.1475 13.2791 0.0005 12.9321 0 12.5263V4.42105C0 4.01579 0.147 3.66898 0.441 3.38063C0.735 3.09228 1.088 2.94786 1.5 2.94737H4.5V1.47368C4.5 1.06842 4.647 0.721614 4.941 0.433263C5.235 0.144912 5.588 0.000491228 6 0H9C9.4125 0 9.76575 0.144421 10.0597 0.433263C10.3537 0.722105 10.5005 1.06891 10.5 1.47368V2.94737H13.5C13.9125 2.94737 14.2657 3.09179 14.5597 3.38063C14.8537 3.66947 15.0005 4.01628 15 4.42105V12.5263C15 12.9316 14.8532 13.2786 14.5597 13.5675C14.2662 13.8563 13.913 14.0005 13.5 14H1.5ZM1.5 12.5263H13.5V4.42105H1.5V12.5263ZM6 2.94737H9V1.47368H6V2.94737Z"
+          fill="#0275D8"
+        />
+      </svg>
+    </div>
+  </div>
+  <div class="block-content flex flex-col pl-[6vw] gap-[10px] mt-[10vh]">
+    <div class="w-[100%] flex items-center justify-between">
+      <div class="flex items-baseline">
+        <h3 class="text-xl mr-4">Everyday Status</h3>
+        <h4 class="text-[14px]">Recent</h4>
+      </div>
+      <div>
+        <button
+          class="text-white bg-[#0275D8] px-2 mr-10 rounded-md py-1"
+          onclick="showHol()"
+        >
+          Update Today’s Status
+        </button>
+      </div>
+    </div>
+    <form
+      action="{% url 'status_update' username user_type email user_id %}"
+      method="post"
+    >
+      <div class="mb-5 mt-2 flex gap-10 items-center">
+        <div class=" ">
+          <p class="mb-1">Start date:</p>
+          <input
+            type="date"
+            name="startdate"
+            class="border-2 border-black mr-10 px-2 py-1 rounded-md"
+            id=""
+          />
+        </div>
+        <div class="">
+          <p class="mb-1">End date:</p>
+          <input
+            type="date"
+            name="enddate"
+            class="border-2 border-black px-2 py-1 rounded-md"
+            id=""
+          />
+        </div>
+        <button
+          type="submit"
+          class="border-2 mt-6 rounded-md border-black px-4 py-2 text-xl"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+    {% for i in Employee_Status_updates %}
+    <div class="w-[100%] pl-10 pt-5 *:mb-2">
+      <p><span class="text-bold">Status</span>: {{i.Status_Update}}</p>
+      <p><span class="text-bold">Date</span> : {{i.Date}}</p>
+    </div>
+    {% endfor %}
+    <!-- <div class="w-[100%] pl-10 pt-5 *:mb-2">
+      <p>
+        <span class="text-bold">Status</span>: The updated status of the
+        employee
+      </p>
+      <p><span class="text-bold">Date</span> : 14/03/2024</p>
+    </div> -->
+  </div>
+</div>
+
+<script>
+  const pop = document.querySelector(".popup");
+  const popblock = document.querySelector(".block");
+  const blura = document.querySelector(".aside");
+  const nav = document.querySelector(".navigation");
+  const menu = document.querySelector(".white-block");
+  const body = document.querySelector("#body");
+  function showHol() {
+    menu.classList.remove("hidden");
+    menu.classList.add("block");
+    pop.classList.remove("hidden");
+    pop.classList.add("block");
+    body.classList.add("overflow-hidden");
+  }
+  function removeHol() {
+    menu.classList.remove("block");
+    menu.classList.add("hidden");
+    pop.classList.remove("block");
+    pop.classList.add("hidden");
+    body.classList.remove("overflow-hidden");
+  }
+</script>
+<script>
+  const aside = document.querySelector(".aside");
+  const block = document.querySelector(".block");
+  const drop = document.querySelector(".dropdown");
+  function handleAside() {
+    aside.classList.toggle("asideToggle");
+    block.classList.toggle("blockToggle");
+    drop.classList.toggle("dropToggle");
+  }
+</script>
+<script>
+  const input = document.getElementById("nameInput");
+  const list = document.getElementById("myUL");
+
+  // Show the list when input is focused
+  input.addEventListener("focus", function () {
+    list.classList.remove("hidden");
+  });
+  // Hide the list when input is blurred
+
+  function myFunction() {
+    const filter = input.value.toUpperCase();
+    const lis = document.querySelectorAll("#myUL li");
+    lis.forEach(function (li) {
+      const a = li.querySelector("a");
+      const txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li.classList.remove("hidden");
+      } else {
+        li.classList.add("hidden");
+      }
+    });
+  }
+
+  function listname(element) {
+    console.log(element.innerText);
+    list.classList.add("hidden");
+    input.value = element.innerText.trim();
+  }
+  function tooglelist() {}
+</script>
+<style>
+  /*block*/
+  .block {
+    transition: 0.2s ease-in-out;
+  }
+  /*block-toggle*/
+  .blockToggle {
+    left: 0;
+    transition: 0.2s ease-in-out;
+    right: 0;
+    width: 100%;
+  }
+  body {
+    overflow-x: hidden;
+  }
+</style>
+<script>
+  function droplogout() {
+    var userlogouttogle = document.querySelector(".userdrop");
+    var logoutblock = document.querySelector(".logout-block");
+
+    if (logoutblock.classList.contains("-translate-y-[500px]")) {
+      logoutblock.classList.remove("-translate-y-[500px]");
+      logoutblock.classList.add("translate-y-[0px]");
+      logoutblock.classList.add("z-20");
+    } else if (logoutblock.classList.contains("translate-y-[0px]")) {
+      logoutblock.classList.remove("translate-y-[0px]");
+      logoutblock.classList.add("-translate-y-[500px]");
+    }
+  }
+</script>
+{% endblock %}

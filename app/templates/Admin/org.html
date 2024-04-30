@@ -1,0 +1,493 @@
+{% extends 'navAside.html' %} {% block title %}
+<title>Organization</title>
+{% endblock %}
+<!-- laptop -->
+{% block emp1_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp1_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp1_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp1_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash1 %}
+<a
+  href="{% url 'search' username user_type email user_id %}"
+  class="decoration-none"
+  >Dashboard</a
+>
+{% endblock %} {% block org1 %}
+<a
+  href="{% url 'org' username user_type email user_id %}"
+  class="decoration-none"
+  >Organization</a
+>
+{% endblock %} {% block myteam1 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %}
+{% block hol1 %}
+<a href="{% url 'Admin_Holiday_Info' username user_type email user_id %}" class="decoration-none">Holiday Info</a>
+{% endblock %}
+<!-- mobile -->
+{% block emp2_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp2_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp2_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp2_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash2 %}
+<a
+  href="{% url 'search' username user_type email user_id %}"
+  class="decoration-none"
+  >Dashboard</a
+>
+{% endblock %} {% block org2 %}
+<a
+  href="{% url 'org' username user_type email user_id %}"
+  class="decoration-none"
+  >Organization</a
+>
+{% endblock %} {% block myteam2 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %} {% block content %}
+<div
+  class="white-block bg-white absolute h-[100vh] w-[100%] opacity-75 z-40 hidden"
+  onclick="removeEmp()"
+></div>
+
+<div
+  class="empDet z-50 hidden fixed px-[20px] py-[15px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit text-white text-[12px] bg-[#1e1e1e] rounded-[20px] w-[70%] justify-center"
+>
+  <form
+    class="content flex flex-col justify-between px-[10px] py-[20px] gap-[10px]"
+    action="{% url 'submit_employee_data' username user_type email user_id 'insert' %}"
+    method="post"
+  >
+    <h3 class="font-normal text-[20px] mx-[0px] my-[5px]">Add an Employee</h3>
+    <table>
+      <tr>
+        <td><p>Employee Name</p></td>
+        <td><p>Address</p></td>
+        <td><p>Date</p></td>
+        <td><p>Skills</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="employee_name"
+            id="employee_name"
+            placeholder="Enter name"
+          />
+        </td>
+        <td rowspan="3">
+          <textarea
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Address"
+            id="Address"
+            rows="4"
+            placeholder="Enter address"
+          ></textarea>
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+            type="date"
+            name="Date"
+            id="Date"
+            placeholder="Enter date"
+          />
+        </td>
+        <td rowspan="3">
+          <textarea
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Skills"
+            id="Skills"
+            rows="4"
+            placeholder="Enter Skills"
+          ></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><p>Employee ID</p></td>
+        <td><p>Manager Name</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="employee_id"
+            id="employee_id"
+            placeholder="Enter ID"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Manager_name"
+            id="Manager_name"
+            placeholder="Enter manager name"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><p>Email address</p></td>
+        <td><p>Department</p></td>
+        <td><p>Manager Email</p></td>
+        <td><p>Username</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="employee_email"
+            id="employee_email"
+            placeholder="Enter email address"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Department"
+            id="Department"
+            placeholder="Enter department"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Manager_email"
+            id="Manager_email"
+            placeholder="Enter manager email"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Username"
+            id="Username"
+            placeholder="Enter username"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><p>Gender</p></td>
+        <td><p>Position</p></td>
+        <td><p>Hire Date</p></td>
+        <td><p>Password</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Gender"
+            id="Gender"
+            placeholder="Enter gender"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Position"
+            id="Position"
+            placeholder="Enter position"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+            type="date"
+            name="Hire_date"
+            id="Hire_date"
+            placeholder="Enter hire date"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="password"
+            name="Password"
+            id="Password"
+            placeholder="Enter password"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><p>Phone Number</p></td>
+        <td><p>Team Lead</p></td>
+        <td><p>Work Location</p></td>
+        <td><p>User Type</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Phone_Number"
+            id="Phone_Number"
+            placeholder="Enter Phone Number"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Team_lead"
+            id="Team_lead"
+            placeholder="Enter team lead"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Work_location"
+            id="Work_location"
+            placeholder="Enter work location"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="userType"
+            id="userType"
+            placeholder="Enter user type"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td><p>DOB</p></td>
+        <td><p>Team Lead Email</p></td>
+        <td><p>Emergency Contact</p></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+            type="date"
+            name="Date_of_birth"
+            id="Date_of_birth"
+            placeholder="Enter DOB"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Team_lead_email"
+            id="Team_lead_email"
+            placeholder="Enter team lead email"
+          />
+        </td>
+        <td>
+          <input
+            class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+            type="text"
+            name="Emergency_contact"
+            id="Emergency_contact"
+            placeholder="Enter emergency contact"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <div class="flex justify-end mr-[30px]">
+      <button
+        type="submit"
+        class="decoration-none w-fit justify-self-end items-end mt-[15px] cursor-pointer px-[25px] py-[10px] bg-[#319131] text-[14px] rounded-[10px] text-white border-none"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div
+  class="block z-10 absolute top-[11vh] left-[0vw] md:left-[13vw] text-justify w-[100%] md:w-[calc(100%-180px)] overflow-hidden"
+>
+  <div
+    class="block-nav fixed w-[100%] flex flex-row items-center gap-[40px] md:gap-[50px] bg-[#F1F9FF] pl-[5vw] h-[5vh]"
+  >
+    <h1 class="font-semibold text-sm md:text-base text-blue-400">
+      Organization
+    </h1>
+  </div>
+  <div
+    class="block-content flex flex-col gap-[20px] pl-[5vw] mt-[5vh] md:mt-[10vh] items-end"
+  >
+    <button
+      onclick="showEmp()"
+      class="text-white bg-[blue] w-fit p-[10px] mx-[20px] border-none rounded-[5px] cursor-pointer text-xs md:text-base"
+    >
+      Add Employee
+    </button>
+    <table class="w-[100%] mb-[5vw] mt-[5vh] bg-white">
+      <tr class="border-b-2 border-b-gray-400 text-center text-xl">
+        <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+          Employee Id
+        </th>
+        <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+          Employee Name
+        </th>
+        <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+          Edit
+        </th>
+      </tr>
+      {% for i in All_Employee_Details %}
+      <tr class="border-b-2 border-b-zinc-400">
+        <td
+          class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+        >
+          {{i.Employee_id}}
+        </td>
+        <td
+          class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+        >
+          {{i.Employee_Name}}
+        </td>
+        <td
+          class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+        >
+          <a
+            href="{% url 'update' i.Employee_id username user_type email user_id %}"
+            class="text-white bg-[blue] w-fit p-[10px] mx-[20px] border-none rounded-[5px] cursor-pointer text-xs md:text-base"
+          >
+            Update/Edit
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById("nameInput");
+  const list = document.getElementById("myUL");
+
+  // Show the list when input is focused
+  input.addEventListener("focus", function () {
+    list.classList.remove("hidden");
+  });
+  // Hide the list when input is blurred
+  function myFunction() {
+    const filter = input.value.toUpperCase();
+    const lis = document.querySelectorAll("#myUL li");
+    lis.forEach(function (li) {
+      const a = li.querySelector("a");
+      const txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li.classList.remove("hidden");
+      } else {
+        li.classList.add("hidden");
+      }
+    });
+  }
+
+  function listname(element) {
+    console.log(element.innerText);
+    list.classList.add("hidden");
+    input.value = element.innerText.trim();
+  }
+  function tooglelist() {}
+</script>
+<script>
+  const pop = document.querySelector(".empDet");
+  const popblock = document.querySelector(".block");
+  const blura = document.querySelector(".aside");
+  const nav = document.querySelector(".navigation");
+  const menu = document.querySelector(".white-block");
+  const body = document.querySelector("#body");
+  const pop2 = document.querySelector(".updDet");
+  function showEmp() {
+    menu.classList.remove("hidden");
+    menu.classList.add("block");
+    pop.classList.remove("hidden");
+    pop.classList.add("block");
+    body.classList.add("overflow-hidden");
+    pop2.classList.add("hidden");
+  }
+  function removeEmp() {
+    menu.classList.remove("block");
+    menu.classList.add("hidden");
+    pop.classList.remove("block");
+    pop.classList.add("hidden");
+    body.classList.remove("overflow-hidden");
+    pop2.classList.add("hidden");
+  }
+  function showEmp2() {
+    menu.classList.remove("hidden");
+    menu.classList.add("block");
+    pop2.classList.remove("hidden");
+    pop2.classList.add("block");
+    body.classList.add("overflow-hidden");
+    pop.classList.add("hidden");
+  }
+</script>
+<script>
+  const aside = document.querySelector(".aside");
+  const block = document.querySelector(".block");
+  const drop = document.querySelector(".dropdown");
+  function handleAside() {
+    aside.classList.toggle("asideToggle");
+    block.classList.toggle("blockToggle");
+    drop.classList.toggle("dropToggle");
+  }
+</script>
+<style>
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    body {
+      overflow: scroll;
+    }
+  }
+  /*block*/
+  .block {
+    transition: 0.2s ease-in-out;
+  }
+  /*block-toggle*/
+  .blockToggle {
+    left: 0;
+    transition: 0.2s ease-in-out;
+    right: 0;
+    width: 100%;
+  }
+</style>
+
+<script>
+  function droplogout() {
+    var userlogouttogle = document.querySelector(".userdrop");
+    var logoutblock = document.querySelector(".logout-block");
+
+    if (logoutblock.classList.contains("-translate-y-[500px]")) {
+      logoutblock.classList.remove("-translate-y-[500px]");
+      logoutblock.classList.add("translate-y-[0px]");
+      logoutblock.classList.add("z-20");
+    } else if (logoutblock.classList.contains("translate-y-[0px]")) {
+      logoutblock.classList.remove("translate-y-[0px]");
+      logoutblock.classList.add("-translate-y-[500px]");
+    }
+  }
+</script>
+{% endblock %}

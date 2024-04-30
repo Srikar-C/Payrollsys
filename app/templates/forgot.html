@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap");
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+    .mainContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Inter";
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTQ0MCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTM4MS45OCAtMTkzQzkxMS44NCAzOTkuNzQxIDU2NS4zMDggNjQyLjAxIC0yMTggOTAxLjg5TDI4LjU1NjIgMTA5N0M3MjEuODUxIDcyMS4yMjkgMTA3Ni40IDQ3My4yNTkgMTY3NiAtNC44MzU1NEwxMzgxLjk4IC0xOTNaIiBmaWxsPSIjQTAwQkZCIiBmaWxsLW9wYWNpdHk9IjAuNCIvPgo8L3N2Zz4K");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .leftSvg {
+      width: 20vw;
+      height: 100vh;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEwMjQiIHZpZXdCb3g9IjAgMCA0MDAgMTAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQwMCAxMDIzLjVDMjMuNSAxMDIzLjUgNTcxIDAgMCAwTDMgMTAyMy41SDQwMFoiIGZpbGw9IiNBMDBCRkIiIGZpbGwtb3BhY2l0eT0iMC4yIi8+Cjwvc3ZnPgo=");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-size: cover;
+    }
+    .rightSvg {
+      width: 20vw;
+      height: 100vh;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjEwMjMiIHZpZXdCb3g9IjAgMCA0MDAgMTAyMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMTAyM0MzNzYuNSAxMDIzIC0xNzEgMCA0MDAgMEwzOTcgMTAyM0gwWiIgZmlsbD0iI0EwMEJGQiIgZmlsbC1vcGFjaXR5PSIwLjIiLz4KPC9zdmc+Cg==");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-size: cover;
+    }
+    .centerBox {
+      background-color: white;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      min-width: 20vw;
+      gap: 25px;
+      border-radius: 8px;
+    }
+    .forgotPasswordTextContainer,
+    .changePasswordTextContainer {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
+    .forgotPasswordText {
+      font-size: 18px;
+      font-family: "Inter";
+      font-weight: 600;
+    }
+    .changePasswordText {
+      font-size: 18px;
+      font-family: "Inter";
+      font-weight: 600;
+    }
+    label {
+      font-size: 14px;
+    }
+    .emailFormContainer input,
+    .otpFormContainer input,
+    .newPasswordFormContainer input {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 4px;
+      width: 100%;
+      border-radius: 4px;
+      border: 0.2px solid #9f9f9f;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+    input:focus {
+      outline: 3px solid #d6aaf2;
+    }
+    .sendOtpBtnContainer,
+    .continueBtnContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .emailFormContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+    .newPasswordFormContainer {
+      height: 60%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+    }
+    .newPasswordForm {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+    }
+    .continueBtn {
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 15px;
+      background-color: #a00bfb;
+      border: none;
+      border-radius: 5px;
+      color: white;
+    }
+    .sendOtpBtn {
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 14px;
+      background-color: #a00bfb;
+      border: none;
+      border-radius: 5px;
+      color: white;
+    }
+    .forgotPasswordContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    @media only screen and (max-width: 1025px) {
+      body {
+        zoom: 80%;
+      }
+      .forgotPasswordContainer {
+        width: 100vw;
+      }
+      .mainContent {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTQ0MCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTM4MS45OCAtMTkzQzkxMS44NCAzOTkuNzQxIDU2NS4zMDggNjQyLjAxIC0yMTggOTAxLjg5TDI4LjU1NjIgMTA5N0M3MjEuODUxIDcyMS4yMjkgMTA3Ni40IDQ3My4yNTkgMTY3NiAtNC44MzU1NEwxMzgxLjk4IC0xOTNaIiBmaWxsPSIjQTAwQkZCIiBmaWxsLW9wYWNpdHk9IjAuNCIvPgo8L3N2Zz4K");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+      .rightSvg {
+        display: none;
+      }
+      .leftSvg {
+        display: none;
+      }
+    }
+    .btn {
+      padding: 10px 20px;
+    }
+    .message {
+      position: absolute;
+      top: -40px;
+      left: 44%;
+      background-color: #08be0e;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 30px;
+      padding-left: 30px;
+      z-index: 1;
+      border-radius: 5px;
+    }
+    .messageOpenSuccess {
+      position: absolute;
+      top: 10px;
+      left: 44%;
+      background-color: #08be0e;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 30px;
+      padding-left: 30px;
+      z-index: 1;
+      border-radius: 5px;
+      animation: messageAnimationIn 0.5s, messageAnimationOut 0.5s 2.6s;
+      font-family: "Inter";
+    }
+    .messageOpenInfo {
+      position: absolute;
+      top: 10px;
+      left: 44%;
+      background-color: #4214e6;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 30px;
+      padding-left: 30px;
+      z-index: 1;
+      border-radius: 5px;
+      animation: messageAnimationIn 0.5s, messageAnimationOut 0.5s 2.6s;
+      font-family: "Inter";
+    }
+    .messageOpenWarning {
+      position: absolute;
+      top: 10px;
+      left: 44%;
+      background-color: #c1b807;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 30px;
+      padding-left: 30px;
+      z-index: 1;
+      border-radius: 5px;
+      animation: messageAnimationIn 0.5s, messageAnimationOut 0.5s 2.6s;
+      font-family: "Inter";
+    }
+    .messageOpenDanger {
+      position: absolute;
+      top: 10px;
+      left: 44%;
+      background-color: #ca0c0c;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 30px;
+      padding-left: 30px;
+      z-index: 1;
+      border-radius: 5px;
+      animation: messageAnimationIn 0.5s, messageAnimationOut 0.5s 2.6s;
+      font-family: "Inter";
+    }
+    @keyframes messageAnimationIn {
+      from {
+        top: -40px;
+      }
+      to {
+        top: 10px;
+      }
+    }
+    @keyframes messageAnimationOut {
+      from {
+        top: 10px;
+      }
+      to {
+        top: -40px;
+      }
+    }
+    .modalBg {
+      width: 100%;
+      height: 100%;
+    }
+    .modalBgActive {
+      position: absolute;
+      opacity: 50%;
+      background-color: #000000;
+      z-index: 1;
+    }
+    .modalContent {
+      position: absolute;
+      background-color: #edf7ee;
+      width: 50%;
+      right: -50%;
+      z-index: 2;
+      height: 100%;
+      transition: 0.2s ease-in;
+      font-family: "Inter";
+      font-size: 50px;
+    }
+    .modalContentActive {
+      transition: 0.2s ease-in;
+      right: 0px;
+    }
+    body {
+      overflow: hidden;
+    }
+    .modalContainer {
+      margin: 20px;
+    }
+  </style>
+  <body>
+    <!-- <div class="message">Toast msg</div> -->
+    <!-- <div onclick="removeModal()" class="modalBg"></div>
+    <div class="modalContent">
+        <div class="modalContainer">
+            <p>Modal Content</p>
+        </div>
+    </div> -->
+    <div class="mainContent">
+      <div class="leftSvg"></div>
+      <div class="forgotPasswordContainer w-fit justify-center">
+        <div class="logoContainer w-fit">
+          <svg
+            width="134"
+            height="21"
+            viewBox="0 0 134 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_377_9)">
+              <path
+                d="M36.0654 0.851562H42.3368C43.2675 0.851562 44.0725 0.985963 44.7522 1.25476C45.4465 1.52356 46.0226 1.89689 46.4807 2.37476C46.9388 2.85263 47.2785 3.42009 47.5001 4.07716C47.7366 4.73422 47.8547 5.45102 47.8547 6.22756C47.8547 7.01902 47.7217 7.73582 47.4558 8.37796C47.2047 9.02011 46.8426 9.56516 46.3699 10.0132C45.8973 10.4612 45.3357 10.8121 44.6857 11.066C44.0358 11.3049 43.3191 11.4244 42.5362 11.4244H39.0349V16.8004H36.0654V0.851562ZM39.0349 8.91556H41.9822C42.9129 8.91556 43.6072 8.66916 44.0653 8.17636C44.5234 7.66862 44.7522 7.01902 44.7522 6.22756C44.7522 5.67502 44.6785 5.21956 44.5306 4.86116C44.3977 4.48782 44.2055 4.18916 43.9545 3.96516C43.7034 3.74116 43.4005 3.58436 43.0459 3.49476C42.6913 3.40516 42.2997 3.36036 41.8714 3.36036H39.0349V8.91556ZM58.8756 14.8964C58.8756 15.4788 58.9271 15.9118 59.0307 16.1956C59.1342 16.4793 59.2228 16.6809 59.2966 16.8004H56.4379C56.3493 16.666 56.2828 16.5017 56.2385 16.3076C56.1942 16.0985 56.172 15.9193 56.172 15.77C55.1083 16.6361 53.8895 17.0692 52.5156 17.0692C51.9837 17.0692 51.4813 16.987 51.0087 16.8228C50.5506 16.6585 50.1517 16.427 49.812 16.1284C49.4724 15.8148 49.1988 15.4414 48.9921 15.0084C48.7999 14.5604 48.704 14.0601 48.704 13.5076C48.704 12.955 48.7999 12.4772 48.9921 12.074C49.1988 11.6558 49.4647 11.3124 49.7899 11.0436C50.115 10.7598 50.4768 10.5358 50.8757 10.3716C51.2895 10.1924 51.7029 10.058 52.1167 9.96836L53.2469 9.74436C53.4834 9.69956 53.7344 9.65476 54.0003 9.60996C54.2811 9.55022 54.5543 9.49051 54.8202 9.43076C55.0862 9.37102 55.3299 9.31131 55.5515 9.25156C55.788 9.19182 55.9947 9.13211 56.172 9.07236V8.73636C56.172 8.18382 55.9653 7.81051 55.5515 7.61636C55.1377 7.40731 54.6357 7.30276 54.0446 7.30276C53.2469 7.30276 52.7001 7.42971 52.4048 7.68356C52.1094 7.93742 51.9616 8.37796 51.9616 9.00516L49.258 8.89316C49.258 8.22116 49.391 7.65371 49.6569 7.19076C49.9228 6.72782 50.2774 6.34702 50.7206 6.04836C51.1638 5.74971 51.6735 5.53316 52.2497 5.39876C52.8258 5.26436 53.4241 5.19716 54.0446 5.19716C54.6502 5.19716 55.2413 5.24196 55.8174 5.33156C56.3936 5.40622 56.9106 5.57796 57.3687 5.84676C57.8268 6.11556 58.1886 6.49636 58.4545 6.98916C58.7353 7.46702 58.8756 8.10916 58.8756 8.91556V14.8964ZM56.172 11.1332C55.8323 11.3124 55.4037 11.4468 54.8867 11.5364L53.402 11.85C52.885 11.9545 52.4418 12.1113 52.0724 12.3204C51.7178 12.5145 51.5405 12.8804 51.5405 13.418C51.5405 13.851 51.7105 14.1945 52.0502 14.4484C52.3899 14.7022 52.8037 14.8292 53.2912 14.8292C53.6014 14.8292 53.9266 14.7918 54.2662 14.7172C54.6059 14.6276 54.9161 14.5006 55.197 14.3364C55.4778 14.1721 55.7066 13.9556 55.8839 13.6868C56.0761 13.418 56.172 13.1044 56.172 12.746V11.1332ZM66.6562 17.8084C66.4938 18.331 66.3089 18.7641 66.1022 19.1076C65.91 19.466 65.6739 19.7497 65.3931 19.9588C65.1272 20.1828 64.8096 20.3396 64.4402 20.4292C64.0707 20.5188 63.6424 20.5636 63.1549 20.5636C62.8152 20.5636 62.5195 20.5486 62.2685 20.5188C62.032 20.4889 61.7882 20.4516 61.5372 20.4068V17.9652C61.6702 17.995 61.818 18.0174 61.9804 18.0324C62.1428 18.0473 62.3499 18.0548 62.6009 18.0548C63.0292 18.0548 63.3471 17.9801 63.5538 17.8308C63.7605 17.6964 63.9454 17.45 64.1078 17.0916L60.0746 5.46596H62.9776L65.3931 13.7092H65.4374L67.5426 5.46596H70.3348L66.6562 17.8084ZM71.662 5.46596H74.3655V7.03396H74.4099C74.735 6.37691 75.1927 5.90651 75.7838 5.62276C76.3748 5.33902 77.0691 5.19716 77.8668 5.19716V7.97476C77.4088 7.97476 76.9656 8.03451 76.5372 8.15396C76.1235 8.27342 75.7544 8.46756 75.4292 8.73636C75.1041 8.99022 74.8458 9.33371 74.6536 9.76676C74.4614 10.1849 74.3655 10.7001 74.3655 11.3124V16.8004H71.662V5.46596ZM84.4831 5.19716C85.3844 5.19716 86.1894 5.34651 86.8985 5.64516C87.6225 5.94382 88.2281 6.36196 88.7157 6.89956C89.2032 7.42222 89.5726 8.04942 89.8237 8.78116C90.0896 9.49796 90.2226 10.282 90.2226 11.1332C90.2226 11.9844 90.0896 12.7758 89.8237 13.5076C89.5726 14.2244 89.2032 14.8516 88.7157 15.3892C88.2281 15.9118 87.6225 16.3225 86.8985 16.6212C86.1894 16.9198 85.3844 17.0692 84.4831 17.0692C83.5672 17.0692 82.7546 16.9198 82.0454 16.6212C81.3363 16.3225 80.738 15.9118 80.2505 15.3892C79.7629 14.8516 79.3862 14.2244 79.1203 13.5076C78.8693 12.7758 78.7436 11.9844 78.7436 11.1332C78.7436 10.282 78.8693 9.49796 79.1203 8.78116C79.3862 8.04942 79.7629 7.42222 80.2505 6.89956C80.738 6.36196 81.3363 5.94382 82.0454 5.64516C82.7546 5.34651 83.5672 5.19716 84.4831 5.19716ZM84.4831 7.70596C83.9955 7.70596 83.5672 7.80302 83.1978 7.99716C82.8432 8.19131 82.5402 8.44516 82.2892 8.75876C82.0527 9.07236 81.8754 9.43822 81.7574 9.85636C81.6393 10.2596 81.5801 10.6852 81.5801 11.1332C81.5801 11.5812 81.6393 12.0142 81.7574 12.4324C81.8754 12.8356 82.0527 13.194 82.2892 13.5076C82.5402 13.8212 82.8432 14.075 83.1978 14.2692C83.5672 14.4633 83.9955 14.5604 84.4831 14.5604C84.9706 14.5604 85.3916 14.4633 85.7462 14.2692C86.1156 14.075 86.4183 13.8212 86.6548 13.5076C86.9058 13.194 87.0907 12.8356 87.2088 12.4324C87.3268 12.0142 87.386 11.5812 87.386 11.1332C87.386 10.6852 87.3268 10.2596 87.2088 9.85636C87.0907 9.43822 86.9058 9.07236 86.6548 8.75876C86.4183 8.44516 86.1156 8.19131 85.7462 7.99716C85.3916 7.80302 84.9706 7.70596 84.4831 7.70596ZM92.1775 0.851562H94.881V16.8004H92.1775V0.851562ZM97.5444 0.851562H100.248V16.8004H97.5444V0.851562Z"
+                fill="#A00BFB"
+              />
+              <path
+                d="M110.136 9.05007C110.047 8.87087 109.929 8.68421 109.781 8.49007C109.633 8.29592 109.441 8.12421 109.205 7.97487C108.968 7.81061 108.695 7.68367 108.385 7.59407C108.075 7.48952 107.72 7.43727 107.321 7.43727C106.686 7.42232 106.184 7.51941 105.814 7.72847C105.445 7.92261 105.26 8.19141 105.26 8.53487C105.26 8.86341 105.43 9.10981 105.77 9.27407C106.125 9.42341 106.56 9.55032 107.077 9.65487C107.609 9.74447 108.178 9.84152 108.784 9.94607C109.404 10.0506 109.973 10.2223 110.49 10.4613C111.022 10.6853 111.458 11.0063 111.798 11.4245C112.152 11.8277 112.329 12.3877 112.329 13.1045C112.329 13.7914 112.189 14.3887 111.908 14.8965C111.628 15.3893 111.258 15.7999 110.8 16.1285C110.342 16.4421 109.81 16.6735 109.205 16.8229C108.599 16.9871 107.979 17.0693 107.343 17.0693C106.014 17.0693 104.898 16.8677 103.997 16.4645C103.111 16.0613 102.416 15.5759 101.914 15.0085L103.953 13.4181C104.263 13.881 104.699 14.2319 105.26 14.4709C105.822 14.7098 106.464 14.8293 107.188 14.8293C107.513 14.8293 107.809 14.7919 108.075 14.7173C108.341 14.6277 108.569 14.5231 108.762 14.4037C108.954 14.2693 109.101 14.1274 109.205 13.9781C109.308 13.8138 109.36 13.657 109.36 13.5077C109.36 13.1941 109.19 12.9626 108.85 12.8133C108.511 12.649 108.082 12.5146 107.565 12.4101C107.048 12.3055 106.486 12.201 105.881 12.0965C105.29 11.977 104.736 11.7978 104.219 11.5589C103.702 11.3199 103.273 10.9914 102.933 10.5733C102.594 10.1551 102.424 9.58767 102.424 8.87087C102.424 8.22872 102.549 7.67621 102.8 7.21327C103.066 6.75032 103.421 6.36952 103.864 6.07087C104.307 5.77221 104.832 5.55567 105.438 5.42127C106.043 5.27192 106.693 5.19727 107.388 5.19727C108.052 5.19727 108.643 5.27192 109.16 5.42127C109.677 5.57061 110.121 5.75727 110.49 5.98127C110.874 6.19032 111.192 6.41432 111.443 6.65327C111.694 6.89221 111.886 7.09381 112.019 7.25807L110.136 9.05007ZM119.243 17.8085C119.081 18.3311 118.896 18.7642 118.689 19.1077C118.497 19.4661 118.261 19.7498 117.98 19.9589C117.714 20.1829 117.397 20.3397 117.027 20.4293C116.658 20.5189 116.23 20.5637 115.742 20.5637C115.402 20.5637 115.107 20.5487 114.856 20.5189C114.619 20.489 114.375 20.4517 114.124 20.4069V17.9653C114.257 17.9951 114.405 18.0175 114.568 18.0325C114.73 18.0474 114.937 18.0549 115.188 18.0549C115.616 18.0549 115.934 17.9802 116.141 17.8309C116.348 17.6965 116.533 17.4501 116.695 17.0917L112.662 5.46607H115.565L117.98 13.7093H118.025L120.13 5.46607H122.922L119.243 17.8085ZM131.473 9.05007C131.385 8.87087 131.267 8.68421 131.119 8.49007C130.971 8.29592 130.779 8.12421 130.543 7.97487C130.306 7.81061 130.033 7.68367 129.723 7.59407C129.412 7.48952 129.058 7.43727 128.659 7.43727C128.024 7.42232 127.522 7.51941 127.152 7.72847C126.783 7.92261 126.598 8.19141 126.598 8.53487C126.598 8.86341 126.768 9.10981 127.108 9.27407C127.462 9.42341 127.898 9.55032 128.415 9.65487C128.947 9.74447 129.516 9.84152 130.122 9.94607C130.742 10.0506 131.311 10.2223 131.828 10.4613C132.36 10.6853 132.796 11.0063 133.135 11.4245C133.49 11.8277 133.667 12.3877 133.667 13.1045C133.667 13.7914 133.527 14.3887 133.246 14.8965C132.965 15.3893 132.596 15.7999 132.138 16.1285C131.68 16.4421 131.148 16.6735 130.543 16.8229C129.937 16.9871 129.317 17.0693 128.681 17.0693C127.352 17.0693 126.236 16.8677 125.335 16.4645C124.449 16.0613 123.754 15.5759 123.252 15.0085L125.291 13.4181C125.601 13.881 126.037 14.2319 126.598 14.4709C127.159 14.7098 127.802 14.8293 128.526 14.8293C128.851 14.8293 129.147 14.7919 129.412 14.7173C129.678 14.6277 129.907 14.5231 130.099 14.4037C130.292 14.2693 130.439 14.1274 130.543 13.9781C130.646 13.8138 130.698 13.657 130.698 13.5077C130.698 13.1941 130.528 12.9626 130.188 12.8133C129.848 12.649 129.42 12.5146 128.903 12.4101C128.386 12.3055 127.824 12.201 127.219 12.0965C126.628 11.977 126.074 11.7978 125.557 11.5589C125.04 11.3199 124.611 10.9914 124.271 10.5733C123.932 10.1551 123.762 9.58767 123.762 8.87087C123.762 8.22872 123.887 7.67621 124.138 7.21327C124.404 6.75032 124.759 6.36952 125.202 6.07087C125.645 5.77221 126.17 5.55567 126.775 5.42127C127.381 5.27192 128.031 5.19727 128.725 5.19727C129.39 5.19727 129.981 5.27192 130.498 5.42127C131.015 5.57061 131.458 5.75727 131.828 5.98127C132.212 6.19032 132.53 6.41432 132.781 6.65327C133.032 6.89221 133.224 7.09381 133.357 7.25807L131.473 9.05007Z"
+                fill="black"
+              />
+              <path
+                d="M13.8489 7.86655L3.46224 8.00399C1.5501 8.02929 1.09618 9.15784 2.44838 10.5247L9.79352 17.9493C11.1457 19.3161 13.792 20.4037 15.7041 20.3784L26.0908 20.2409C28.003 20.2156 28.4569 19.0871 27.1047 17.7202L19.7596 10.2956C18.4074 8.92878 15.7611 7.84125 13.8489 7.86655Z"
+                fill="#308AD7"
+              />
+              <path
+                d="M22.5049 2.65636L8.65592 2.4731C7.69985 2.46045 7.2767 3.1483 7.71078 4.00946L13.9986 16.4836C14.4327 17.3447 15.5596 18.0531 16.5157 18.0657L30.3647 18.249C31.3207 18.2616 31.7439 17.5738 31.3098 16.7126L25.022 4.23853C24.5879 3.37737 23.4609 2.66901 22.5049 2.65636Z"
+                fill="#0275D8"
+              />
+              <path
+                d="M15.1787 9.67736L14.7019 8.73152C15.0825 8.81157 15.4897 8.95979 15.8776 9.18964L15.8781 9.18824C15.9059 9.20318 15.9358 9.21361 15.9641 9.214C16.0013 9.21449 16.025 9.19874 16.035 9.17515L16.0367 9.17546L16.196 8.61924L16.1948 8.61875C16.2034 8.6001 16.2034 8.5763 16.1898 8.54935C16.1738 8.51757 16.1438 8.48946 16.1096 8.46941C15.5268 8.12238 14.8992 7.91039 14.2528 7.8406L13.9791 7.2974C13.949 7.23783 13.871 7.18883 13.8048 7.18795L13.3293 7.18165C13.2631 7.18078 13.2339 7.22834 13.2639 7.28795L13.5308 7.81739C12.5519 7.89968 12.2404 8.48113 12.5893 9.17333C13.0591 10.1054 14.0461 10.384 14.9162 10.5658L15.4516 11.628C14.9074 11.5401 14.3754 11.2998 13.9615 11.033C13.9585 11.031 13.9556 11.0293 13.9525 11.0275L13.9447 11.0227L13.9444 11.0237C13.9155 11.0073 13.8845 10.9979 13.8569 10.9972C13.8356 10.9971 13.8174 11.0021 13.8042 11.0119C13.791 11.0217 13.7833 11.0358 13.7819 11.0527L13.7803 11.0525L13.6407 11.6197L13.6417 11.6207C13.6321 11.6396 13.6338 11.6644 13.6466 11.6902C13.6639 11.7246 13.6975 11.754 13.7351 11.7741L13.7347 11.7756C14.3432 12.1581 15.0673 12.4399 15.8974 12.5123L16.1539 13.0212C16.1839 13.0808 16.2619 13.1298 16.328 13.1307L16.8036 13.137C16.8697 13.1378 16.8989 13.0902 16.8689 13.0307L16.6125 12.5216C17.6791 12.4335 17.9376 11.8517 17.5541 11.0908C17.0808 10.152 16.0599 9.86598 15.1787 9.67736ZM14.384 9.51017C14.0272 9.41707 13.7622 9.31133 13.662 9.11253C13.5446 8.87957 13.652 8.71763 13.966 8.68091L14.384 9.51017ZM16.1737 11.6512L15.7108 10.7329C16.094 10.8332 16.3852 10.9461 16.4992 11.1722C16.6098 11.3916 16.5271 11.5878 16.1737 11.6512Z"
+                fill="#17FF2E"
+              />
+              <path d="M14.3682 4.25195L17.8312 4.29778" stroke="black" />
+              <path d="M15.4688 6.43555L23.7787 6.54551" stroke="black" />
+              <path d="M19.7129 14.8555L24.2145 14.915" stroke="black" />
+            </g>
+            <defs>
+              <clipPath id="clip0_377_9">
+                <rect width="134" height="21" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="centerBox w-[60%]">
+          <div class="forgotPasswordTextContainer">
+            <p class="forgotPasswordText">Forgot Password</p>
+          </div>
+          <p>{{name}}</p>
+          <div class="emailFormContainer">
+            <form action="{% url 'forgot_password' %}" method="post">
+              <label for="email">Email</label>
+              <br />
+              <input type="text" id="email" name="email" value="{{email}}" />
+              <div class="sendOtpBtnContainer">
+                <button class="sendOtpBtn">Send OTP</button>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="otpFormContainer">
+            <form action="#">
+              <label for="email">OTP</label>
+              <br />
+              <input type="text" />
+            </form>
+          </div> -->
+          <div class="changePasswordTextContainer">
+            <p class="changePasswordText">Change Password</p>
+          </div>
+          <p>{{email}}</p>
+          <div class="newPasswordFormContainer">
+            <div>
+              <label for="">Enter OTP</label>
+              <input type="text" name="otp" id="otp" />
+              <label for="pass">New Password</label>
+              <input type="text" name="new_password" id="new_password" />
+              <label for="conf">Confirm Password</label>
+              <input
+                type="text"
+                name="confirm_password"
+                id="confirm_password"
+              />
+              <form class="continueBtnContainer" action="{% url 'login' %}">
+                <button class="continueBtn">Continue</button>
+              </form>
+              <!-- </div> -->
+            </div>
+          </div>
+          <!-- <button onclick="activateModal()">Call Modal</button> -->
+          <!-- <div class="btns">
+                    <button onclick="showMsgSuccess()" class="btn success">Success</button>
+                    <button onclick="showMsgInfo()" class="btn info">Info</button>
+                    <button onclick="showMsgWarning()" class="btn warning">Warning</button>
+                    <button onclick="showMsgDanger()" class="btn danger">Danger</button>
+                </div> -->
+        </div>
+      </div>
+      <div class="rightSvg"></div>
+    </div>
+    <script>
+      function getdata() {
+        const email = "{{email}}";
+        const otp = document.getElementById("otp").value;
+        const new_password = document.getElementById("new_password").value;
+        const confirm_password =
+          document.getElementById("confirm_password").value;
+        console.log(otp, new_password, confirm_password, email);
+        $.ajax({
+          type: "POST",
+          url: "/validate_password/otpvalidate/email/",
+          data: {
+            input1: otp,
+            input2: new_password,
+            input3: confirm_password,
+            email: email,
+          },
+          success: function (response) {
+            console.log("Data sent successfully");
+            // Handle success response
+          },
+          error: function (xhr, errmsg, err) {
+            console.log("Failed to send data");
+            // Handle error response
+          },
+        });
+      }
+    </script>
+  </body>
+  <script>
+    const message = document.querySelector(".message");
+    const modalBg = document.querySelector(".modalBg");
+    const modalContent = document.querySelector(".modalContent");
+
+    function showMsgSuccess() {
+      message.className = "messageOpenSuccess";
+      message.innerHTML = "Success message";
+      setTimeout(function () {
+        message.className = message.className.replace(
+          "messageOpenSuccess",
+          "message"
+        );
+      }, 3000);
+    }
+
+    function showMsgInfo() {
+      message.className = "messageOpenInfo";
+      message.innerHTML = "Info message";
+      setTimeout(function () {
+        message.className = message.className.replace(
+          "messageOpenInfo",
+          "message"
+        );
+      }, 3000);
+    }
+
+    function showMsgWarning() {
+      message.className = "messageOpenWarning";
+      message.innerHTML = "Warning message";
+      setTimeout(function () {
+        message.className = message.className.replace(
+          "messageOpenWarning",
+          "message"
+        );
+      }, 3000);
+    }
+
+    function showMsgDanger() {
+      message.className = "messageOpenDanger";
+      message.innerHTML = "Danger message";
+      setTimeout(function () {
+        message.className = message.className.replace(
+          "messageOpenDanger",
+          "message"
+        );
+      }, 3000);
+    }
+
+    function activateModal() {
+      modalBg.classList.toggle("modalBgActive");
+      modalContent.classList.toggle("modalContentActive");
+    }
+
+    function removeModal() {
+      modalContent.classList.remove("modalContentActive");
+      setTimeout(function () {
+        modalBg.classList.remove("modalBgActive");
+      }, 250);
+    }
+  </script>
+</html>

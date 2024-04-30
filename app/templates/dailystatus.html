@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Status Information</title>
+</head>
+<body>
+    <h2>Daily Status Information:</h2>
+   
+        {% for i in flask_data %}
+             {{ i.Date }}
+             {{ i.Employee_Name }}
+             {{ i.Employee_id }}
+             {{ i.Status_Update }}
+       
+        {% endfor %}
+    
+</body>
+</html>

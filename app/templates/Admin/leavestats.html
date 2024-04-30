@@ -1,0 +1,489 @@
+{% extends 'navAside.html' %} {% block title %}
+<title>Leave Status</title>
+{% endblock %}
+<!-- laptop -->
+{% block emp1_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp1_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp1_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp1_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash1 %}
+<a
+  href="{% url 'search' username user_type email user_id %}"
+  class="decoration-none"
+  >Dashboard</a
+>
+{% endblock %} {% block org1 %}
+<a
+  href="{% url 'org' username user_type email user_id  %}"
+  class="decoration-none"
+  >Organization</a
+>
+{% endblock %} {% block myteam1 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %}{% block hol1 %}
+<a href="{% url 'Admin_Holiday_Info' username user_type email user_id %}" class="decoration-none">Holiday Info</a>
+{% endblock %}
+<!-- mobile -->
+{% block emp2_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp2_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp2_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp2_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash2 %}
+<a
+  href="{% url 'search' username user_type email user_id %}"
+  class="decoration-none"
+  >Dashboard</a
+>
+{% endblock %} {% block org2 %}
+<a href="" class="decoration-none">Organization</a>
+{% endblock %} {% block myteam2 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %} {% block content %}
+
+<div
+  class="white-block bg-white absolute h-[100vh] w-[100%] opacity-75 z-40 hidden"
+  onclick="removeHol()"
+></div>
+
+<div
+  class="popup z-50 hidden absolute px-[20px] py-[15px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 h-fit text-white text-[12px] bg-[#1e1e1e] rounded-[20px] w-[400px]"
+>
+  <form
+    class="content flex flex-col justify-between px-[10px] py-[20px] gap-[10px]"
+    action="{%url 'festival_data' username user_type email user_id %}"
+    method="post"
+  >
+    <h3 class="font-normal text-[20px] mx-[0px] my-[5px]">Enter Festival</h3>
+
+    <div class="fes-date flex flex-col gap-[5px]">
+      <p>Festival Date</p>
+
+      <input
+        type="date"
+        name="festival_date"
+        id=""
+        placeholder="Enter Festival Date"
+        class="bg-[#1e1e1e] border-2 border-gray-400 outline-none p-[15px] rounded-[5px] text-[12px] p-[10px] h-[1vh] text-white"
+      />
+    </div>
+
+    <div class="fes-name flex flex-col gap-[5px]">
+      <p>Festival Name</p>
+      <input
+        type="text"
+        id=""
+        name="festival_name"
+        placeholder="Enter Festival Name"
+        class="bg-[#1e1e1e] border-2 border-gray-400 outline-none p-[15px] rounded-[5px] text-[12px] p-[10px] h-[1vh] text-white"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="decoration-none w-fit justify-self-end items-end mt-[15px] cursor-pointer px-[25px] py-[10px] bg-[#319131] text-[14px] rounded-[10px] text-white border-none"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+<div
+  class="block z-10 absolute top-[11vh] left-[0vw] md:left-[13vw] text-justify w-[100%] md:w-[calc(100%-180px)] overflow-hidden"
+>
+  <div
+    class="block-nav fixed w-[100%] flex flex-row items-center gap-[40px] md:gap-[50px] bg-[#F1F9FF] pl-[5vw] h-[5vh]"
+  >
+    <h1 class="font-semibold text-sm md:text-base text-blue-400">Dashboard</h1>
+  </div>
+  <div
+    class="block-content flex flex-col md:flex-row gap-[20px] md:gap-[50px] pl-[5vw] mt-[5vh] md:mt-[10vh]"
+  >
+    <div
+      class="left bg-white h-[150px] w-fit flex flex-col items-center justify-center py-[20px] px-[40px] rounded-[10px] gap-[10px]"
+    >
+      <p class="text-gray-400">Total Employees</p>
+      <div class="flex flex-row gap-[10px] items-center">
+        <svg
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="25" cy="25" r="25" fill="#0275D8" />
+          <path
+            d="M28.6875 27.4997C28.621 27.4845 28.5513 27.4925 28.49 27.5223C28.4286 27.552 28.3793 27.6018 28.35 27.6634L25.875 34.7322V32.4997L25.5156 29.9865C25.6304 29.9624 25.736 29.9064 25.8204 29.8251C25.9048 29.7437 25.9647 29.6403 25.9931 29.5265L26.3056 28.2765C26.3287 28.1844 26.3305 28.0883 26.3108 27.9954C26.2912 27.9025 26.2507 27.8153 26.1923 27.7404C26.1339 27.6655 26.0592 27.6049 25.9739 27.5632C25.8886 27.5215 25.795 27.4998 25.7 27.4997H23.5512C23.4563 27.4997 23.3626 27.5213 23.2773 27.563C23.192 27.6046 23.1173 27.6651 23.0588 27.74C23.0004 27.8148 22.9598 27.9019 22.9401 27.9948C22.9203 28.0877 22.922 28.1838 22.945 28.2759L23.2575 29.5259C23.2858 29.6398 23.3456 29.7434 23.4301 29.8248C23.5145 29.9063 23.6202 29.9623 23.735 29.9865L23.375 32.4997V34.1847L20.9 27.6634C20.8707 27.6018 20.8214 27.552 20.76 27.5223C20.6987 27.4925 20.629 27.4845 20.5625 27.4997C20.3236 27.5573 20.0844 27.614 19.845 27.6697C18.4312 28.0009 16.6837 28.4097 15.755 29.0197C14.6531 29.7428 14 30.5953 14 31.5622V35.6247H35.25V31.5622C35.25 30.5953 34.5969 29.7434 33.495 29.0197C32.5663 28.4097 30.8188 28.0009 29.405 27.6697C29.1531 27.6109 28.9113 27.5547 28.6875 27.4997Z"
+            fill="white"
+          />
+          <circle cx="24.875" cy="20.25" r="6.25" fill="white" />
+        </svg>
+        <p class="font-semibold text-4xl">{{Employee_Count}}</p>
+      </div>
+    </div>
+    <!-- <p>{{Employee_LeaveRequest_Info}}</p> -->
+    <div class="flex flex-col">
+      <form
+        action="{% url 'get_Employee_Leaves' username user_type email user_id %}"
+        method="post"
+      >
+        <div
+          class="right bg-white h-[150px] w-fit flex flex-col items-start justify-center py-[10px] md:py-[20px] px-[20px] md:px-[40px] rounded-[10px] gap-[10px]"
+        >
+          <p class="font-normal">Search for an Employee</p>
+          <div
+            class="flex items-center border-2 border-gray-300 justify-between px-[5px] md:px-[10px] py-[2px] md:py-[4px] rounded-[10px] mt-[10px]"
+          >
+            <input
+              id="nameInput"
+              type="text"
+              name="nameInput"
+              class="nameInput border-none outline-none w-fit md:w-[350px]"
+              placeholder="Enter name"
+              oninput="myFunction()"
+            />
+            <button type="submit">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.0313 20.7905C20.4913 21.2505 21.2013 20.5405 20.7413 20.0905L16.9913 16.3305C18.3068 14.8751 19.0339 12.9824 19.0313 11.0205C19.0313 6.63055 15.4613 3.06055 11.0713 3.06055C6.68133 3.06055 3.11133 6.63055 3.11133 11.0205C3.11133 15.4105 6.68133 18.9805 11.0713 18.9805C13.0513 18.9805 14.8813 18.2505 16.2813 17.0405L20.0313 20.7905ZM4.11033 11.0205C4.11033 7.18055 7.24033 4.06055 11.0703 4.06055C14.9103 4.06055 18.0303 7.18055 18.0303 11.0205C18.0303 14.8605 14.9103 17.9805 11.0703 17.9805C7.24033 17.9805 4.11033 14.8605 4.11033 11.0205Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <ul
+          id="myUL"
+          class="hidden absolute h-36 bg-gray-300 overflow-scroll overflow-x-hidden scroll-smooth scrollbar-hide px-4 py-2 w-[250px] md:w-[400px] rounded-md -mt-10 md:-mt-5 ml-3 md:ml-10 z-10"
+        >
+          {% for i in All_Names_Ids%}
+          <li
+            onclick="listname(this)"
+            class="px-2 py-3 cursor-pointer hover:bg-slate-300"
+          >
+            <a href="#" class="o1">{{i.Employee_id}} {{i.Employee_Name}} </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </form>
+    </div>
+    <div class="holidays">
+      <button
+        class="px-10 py-3 text-white bg-[#A00BFB] rounded-[10px]"
+        onclick="showHol()"
+      >
+        Enter Holidays
+      </button>
+    </div>
+  </div>
+  <p class="pl-[5vw] mt-[5vh]">Employee Id: {{Employee_ID}}</p>
+  <p class="pl-[5vw] mt-[1vh]">Selected employee: {{Employee_Name}}</p>
+  <div
+    class="block-nav2 flex flex-row items-center gap-[40px] md:gap-[50px] bg-[#F1F9FF] h-[5vh] pl-[5vw] mt-[1vh]"
+  >
+    <a
+      href="{% url 'leave_status' username user_type email user_id %}"
+      class="font-semibold text-sm md:text-base text-blue-400"
+      >Leave Stats</a
+    >
+    <a
+      href="{% url 'search' username user_type email user_id %}"
+      class="font-semibold text-sm md:text-base"
+      >Attendance Stats</a
+    >
+    <a href="{% url 'Work_from_home_accept' username user_type email user_id %}"
+     class="font-semibold text-sm md:text-base"
+     >Work From Home Details</a>
+     <a href="{% url 'AdminStatusInfo' username user_type email user_id %}"
+        class="font-semibold text-sm md:text-base"
+        >Daily Status</a
+    >
+  </div>
+  {% if Employee_ID %}
+  <div
+    class="flex flex-row items-center gap-[5px] pl-[5vw] justify-between mt-[2vh]"
+  >
+    <div class="flex flex-row items-center">
+      <p>All Attandance Logs</p>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 6.83333V1.83333C1 1.3731 1.3731 1 1.83333 1H11.8333C12.2936 1 12.6667 1.3731 12.6667 1.83333V11.8333C12.6667 12.2936 12.2936 12.6667 11.8333 12.6667H6.83333M3.59259 6.83333H6.83333M6.83333 6.83333V10.0741M6.83333 6.83333L1 12.6667"
+          stroke="#0275D8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    
+  </div>
+  <table class="w-[90%] ml-[6vw] mb-[5vw] mt-[5vh] bg-white">
+    <tr class="border-b-2 border-b-gray-400 text-center text-xl">
+      
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        Applied On
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+        Reason 
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">From</th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">To</th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+        Approve/Reject 
+
+        
+      </th>
+    </tr>
+    {% for i in Employee_LeaveRequest_Info %}
+    <tr class="border-b-2 border-b-zinc-400">
+      <td class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        {{i.Applied_on}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.Reason}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.Start_date}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.End_date}}
+      </td>
+      <td
+        class="border-r-2 flex border-r-gray-400 gap-2 px-2 py-4 text-center items-center justify-center *:rounded-[10px]"
+      >
+        <a
+          href="{% url 'leave_accept' i.Request_id username user_type email user_id  %}"
+          class="bg-[#27B70A] text-white p-3"
+          >Accept</a
+        >
+        <a
+          href=" {% url 'leave_reject' i.Request_id username user_type email user_id %}"
+          class="bg-red-500 text-white p-3"
+          >Reject</a
+        >
+      </td>
+    </tr>
+    {%endfor%}
+  </table>
+  {% else %}
+  <div
+  class="flex flex-col items-center gap-[5px] pl-[5vw] mt-[2vh]"
+>
+  <div class="flex flex-row items-center self-start gap-1">
+    <p>All Attandance Logs</p>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 6.83333V1.83333C1 1.3731 1.3731 1 1.83333 1H11.8333C12.2936 1 12.6667 1.3731 12.6667 1.83333V11.8333C12.6667 12.2936 12.2936 12.6667 11.8333 12.6667H6.83333M3.59259 6.83333H6.83333M6.83333 6.83333V10.0741M6.83333 6.83333L1 12.6667"
+        stroke="#0275D8"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+  <table class="w-[90%] mb-[5vw] mt-[5vh] bg-white self-start">
+    <tr class="border-b-2 border-b-gray-400 text-center text-xl">
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        Employee Id
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        Employee Name
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        Applied On
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+        Reason 
+      </th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">From</th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">To</th>
+      <th class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4">
+        Approve/Reject 
+
+        
+      </th>
+    </tr>
+    {% for i in Leave_Request_Info %}
+    <tr class="border-b-2 border-b-zinc-400">
+      <td class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        {{i.Employee_id}}
+      </td>
+      <td class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        {{i.Employee_Name}}
+      </td>
+      <td class="border-r-2 border-r-gray-400 w-16 md:w-80 px-2 py-4">
+        {{i.Applied_on}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.Reason}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.Start_date}}
+      </td>
+      <td
+        class="border-r-2 border-r-gray-400 w-16 md:w-36 px-2 py-4 text-center"
+      >
+        {{i.End_date}}
+      </td>
+      <td
+        class="border-r-2 flex border-r-gray-400 gap-2 px-2 py-4 text-center items-center justify-center *:rounded-[10px]"
+      >
+        <a
+          href="{% url 'leave_accept' i.Request_id username user_type email user_id  %}"
+          class="bg-[#27B70A] text-white p-3"
+          >Accept</a
+        >
+        <a
+          href=" {% url 'leave_reject' i.Request_id username user_type email user_id %}"
+          class="bg-red-500 text-white p-3"
+          >Reject</a
+        >
+      </td>
+    </tr>
+    {%endfor%}
+  </table>
+</div>
+{% endif %}
+
+<style>
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    body {
+      overflow: scroll;
+    }
+  }
+  /*block*/
+  .block {
+    transition: 0.2s ease-in-out;
+  }
+  /*block-toggle*/
+  .blockToggle {
+    left: 0;
+    transition: 0.2s ease-in-out;
+    right: 0;
+    width: 100%;
+  }
+</style>
+<script>
+  const pop = document.querySelector(".popup");
+  const popblock = document.querySelector(".block");
+  const blura = document.querySelector(".aside");
+  const nav = document.querySelector(".navigation");
+  const menu = document.querySelector(".white-block");
+  const body = document.querySelector("#body");
+  function showHol() {
+    menu.classList.remove("hidden");
+    menu.classList.add("block");
+    pop.classList.remove("hidden");
+    pop.classList.add("block");
+    body.classList.add("overflow-hidden");
+  }
+  function removeHol() {
+    menu.classList.remove("block");
+    menu.classList.add("hidden");
+    pop.classList.remove("block");
+    pop.classList.add("hidden");
+    body.classList.remove("overflow-hidden");
+  }
+</script>
+<script>
+  const aside = document.querySelector(".aside");
+  const block = document.querySelector(".block");
+  const drop = document.querySelector(".dropdown");
+  function handleAside() {
+    aside.classList.toggle("asideToggle");
+    block.classList.toggle("blockToggle");
+    drop.classList.toggle("dropToggle");
+  }
+</script>
+<script>
+  const input = document.getElementById("nameInput");
+  const list = document.getElementById("myUL");
+
+  // Show the list when input is focused
+  input.addEventListener("focus", function () {
+    list.classList.remove("hidden");
+  });
+  // Hide the list when input is blurred
+
+  function myFunction() {
+    const filter = input.value.toUpperCase();
+    const lis = document.querySelectorAll("#myUL li");
+    lis.forEach(function (li) {
+      const a = li.querySelector("a");
+      const txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li.classList.remove("hidden");
+      } else {
+        li.classList.add("hidden");
+      }
+    });
+  }
+
+  function listname(element) {
+    console.log(element.innerText);
+    list.classList.add("hidden");
+    input.value = element.innerText.trim();
+  }
+  function tooglelist() {}
+</script>
+
+<script>
+  function droplogout() {
+    var userlogouttogle = document.querySelector(".userdrop");
+    var logoutblock = document.querySelector(".logout-block");
+
+    if (logoutblock.classList.contains("-translate-y-[500px]")) {
+      logoutblock.classList.remove("-translate-y-[500px]");
+      logoutblock.classList.add("translate-y-[0px]");
+      logoutblock.classList.add("z-20");
+    } else if (logoutblock.classList.contains("translate-y-[0px]")) {
+      logoutblock.classList.remove("translate-y-[0px]");
+      logoutblock.classList.add("-translate-y-[500px]");
+    }
+  }
+</script>
+{% endblock %}

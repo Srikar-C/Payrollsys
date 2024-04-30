@@ -1,0 +1,28 @@
+<!-- work_from_home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work From Home Request</title>
+</head>
+<body>
+    <h1>Leave Request</h1>
+    <p>Welcome, {{ username }}!</p>
+    <p>Email: {{ email }}</p>
+    <p>User ID: {{ user_id }}</p>
+    <p>User Type: {{ user_type }}</p>
+    <h2>Work From Home Request Form</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <label for="from_date">From Date:</label>
+        <input type="date" id="from_date" name="from_date" required><br><br>
+        
+        <label for="to_date">To Date:</label>
+        <input type="date" id="to_date" name="to_date" required><br><br>
+        
+        <label for="reason">Reason:</label><br>
+        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

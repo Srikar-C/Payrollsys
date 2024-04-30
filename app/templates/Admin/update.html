@@ -1,0 +1,381 @@
+{% extends 'navAside.html' %} {% block title %}
+<title>Update Details</title>
+{% endblock %}
+<!-- laptop -->
+{% block emp1_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp1_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp1_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp1_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash1 %}
+<a href="{% url 'search' username user_type email user_id %}" class="decoration-none">Dashboard</a>
+{% endblock %} {% block org1 %}
+<a
+  href="{% url 'org' username user_type email user_id %}"
+  class="decoration-none"
+  >Organization</a
+>
+{% endblock %} {% block myteam1 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %}
+<!-- mobile -->
+{% block emp2_name %}
+<p id="username1" class="username m-0 text-[14px] font-semibold">
+  {{username}}
+</p>
+{% endblock %} {% block emp2_id %}
+<p id="userid1" class="userid m-0 text-[14px]">{{user_id}}</p>
+{% endblock %} {% block emp2_email %}
+<p id="email1" class="email text-[8px] m-0">{{email}}</p>
+{% endblock %} {% block emp2_type %}
+<p class="text-[14px] font-semibold m-0">{{user_type}}</p>
+{% endblock %} {% block dash2 %}
+<a href="{% url 'search' username user_type email user_id %}" class="decoration-none">Dashboard</a>
+{% endblock %} {% block org2 %}
+<a
+  href="{% url 'org' username user_type email user_id %}"
+  class="decoration-none"
+  >Organization</a
+>
+{% endblock %} {% block myteam2 %}
+<a href="" class="decoration-none">My Team</a>
+{% endblock %} {% block content %}  
+<div
+  class="block z-10 absolute top-[11vh] left-[0vw] md:left-[13vw] text-justify w-[100%] md:w-[calc(100%-180px)] overflow-hidden"
+>
+  <div
+    class="block-content flex flex-col gap-[20px] pl-[5vw] mt-[5vh] md:mt-[10vh] items-end"
+  >
+    <div
+      class="updDet z-50 fixed px-[20px] py-[5px] left-[58%] top-[55%] transform -translate-x-1/2 -translate-y-1/2 h-fit text-white text-[12px] bg-[#1e1e1e] rounded-[20px] w-[70%]"
+    >
+      <form
+        class="content flex flex-col justify-between px-[10px] py-[20px] gap-[10px]"
+        action="{% url 'submit_employee_data' username user_type email user_id 'update' %}"
+        method="post"
+      >
+          <h3 class="font-normal text-[20px] mx-[0px] my-[5px]">
+            Update an Employee
+          </h3>
+          <table>
+            <tr>
+              <td><p>Employee Name</p></td>
+              <td><p>Address</p></td>
+              <td><p>Date</p></td>
+              <td><p>Skills</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="employee_name"
+                  id="employee_name"
+                  value="{{Complete_Employee_Details.Employee_Name}}"
+                  placeholder="Enter name"
+                />
+              </td>
+              <td rowspan="3">
+                <textarea
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Address"
+                  id="Address"
+                  rows="4"
+                 
+                  placeholder="Enter address"
+                > {{Complete_Employee_Details.Address}}</textarea>
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+                  type="date"
+                  name="Date"
+                  id="Date"
+                  value="{{Complete_Employee_Details.Date}}"
+                  placeholder="Enter date"
+                />
+              </td>
+              <td rowspan="3">
+                <textarea
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Skills"
+                  id="Skills"
+                  rows="4"
+                 
+                  placeholder="Enter Skills"
+                > {{Complete_Employee_Details.Skills}}</textarea>
+              </td>
+            </tr>
+            <tr>
+              <td><p>Employee ID</p></td>
+              <td><p>Manager Name</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="employee_id"
+                  id="employee_id"
+                  value="{{Complete_Employee_Details.Employee_id}}"
+                  placeholder="Enter ID"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Manager_name"
+                  id="Manager_name"
+                  value="{{Complete_Employee_Details.Manager_name}}"
+                  placeholder="Enter manager name"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><p>Email address</p></td>
+              <td><p>Department</p></td>
+              <td><p>Manager Email</p></td>
+              <td><p>Username</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="employee_email"
+                  id="employee_email"
+                  value="{{Complete_Employee_Details.Employee_email}}"
+                  placeholder="Enter email address"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Department"
+                  id="Department"
+                  value="{{Complete_Employee_Details.Department}}"
+                  placeholder="Enter department"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Manager_email"
+                  id="Manager_email"
+                  value="{{Complete_Employee_Details.Manager_email}}"
+                  placeholder="Enter manager email"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Username"
+                  id="Username"
+                  value="{{Complete_Employee_Details.Username}}"
+                  placeholder="Enter username"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><p>Gender</p></td>
+              <td><p>Position</p></td>
+              <td><p>Hire Date</p></td>
+              <td><p>Password</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Gender"
+                  id="Gender"
+                  value="{{Complete_Employee_Details.Gender}}"
+                  placeholder="Enter gender"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Position"
+                  id="Position"
+                  value="{{Complete_Employee_Details.Position}}"
+                  placeholder="Enter position"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+                  type="date"
+                  name="Hire_date"
+                  id="Hire_date"
+                  value="{{Complete_Employee_Details.Hire_date}}"
+                  placeholder="Enter hire date"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="password"
+                  name="Password"
+                  id="Password"
+                  value="{{Complete_Employee_Details.Password}}"
+                  placeholder="Enter password"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><p>Phone Number</p></td>
+              <td><p>Team Lead</p></td>
+              <td><p>Work Location</p></td>
+              <td><p>User Type</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Phone_Number"
+                  id="Phone_Number"
+                  value="{{Complete_Employee_Details.Phone_Number}}"
+                  placeholder="Enter Phone Number"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Team_lead"
+                  id="Team_lead"
+                  value="{{Complete_Employee_Details.Team_lead}}"
+                  placeholder="Enter team lead"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Work_location"
+                  id="Work_location"
+                  value="{{Complete_Employee_Details.Work_location}}"
+                  placeholder="Enter work location"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="userType"
+                  id="userType"
+                  value="{{Complete_Employee_Details.usertype}}"
+                  placeholder="Enter user type"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><p>DOB</p></td>
+              <td><p>Team Lead Email</p></td>
+              <td><p>Emergency Contact</p></td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] w-[80%] mb-[10px]"
+                  type="date"
+                  name="Date_of_birth"
+                  id="Date_of_birth"
+                  value="{{Complete_Employee_Details.Date_of_birth}}"
+                  placeholder="Enter DOB"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Team_lead_email"
+                  id="Team_lead_email"
+                  value="{{Complete_Employee_Details.Team_lead_email}}"
+                  placeholder="Enter team lead email"
+                />
+              </td>
+              <td>
+                <input
+                  class="bg-[transparent] border-2 border-[#9C9A9A] outline-none p-[5px] rounded-[5px] mb-[10px]"
+                  type="text"
+                  name="Emergency_contact"
+                  id="Emergency_contact"
+                  value="{{Complete_Employee_Details.Emergency_contact}}"
+                  placeholder="Enter emergency contact"
+                />
+              </td>
+            </tr>
+          </table>
+      
+
+        <button
+          type="submit"
+          class="decoration-none w-fit justify-self-end items-end mt-[15px] cursor-pointer px-[25px] py-[10px] bg-[#319131] text-[14px] rounded-[10px] text-white border-none"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <script>
+    const aside = document.querySelector(".aside");
+    const block = document.querySelector(".block");
+    const drop = document.querySelector(".dropdown");
+    function handleAside() {
+      aside.classList.toggle("asideToggle");
+      block.classList.toggle("blockToggle");
+      drop.classList.toggle("dropToggle");
+    }
+  </script>
+  <script>
+    const pop = document.querySelector(".empDet");
+    const popblock = document.querySelector(".block");
+    const blura = document.querySelector(".aside");
+    const nav = document.querySelector(".navigation");
+    const menu = document.querySelector(".white-block");
+    const body = document.querySelector("#body");
+    const pop2 = document.querySelector(".updDet");
+    function showEmp2() {
+      menu.classList.remove("hidden");
+      menu.classList.add("block");
+      pop2.classList.remove("hidden");
+      pop2.classList.add("block");
+      body.classList.add("overflow-hidden");
+      pop.classList.add("hidden");
+    }
+  </script>
+  
+<script>
+  function droplogout() {
+    var userlogouttogle = document.querySelector(".userdrop");
+    var logoutblock = document.querySelector(".logout-block");
+
+    if (logoutblock.classList.contains("-translate-y-[500px]")) {
+      logoutblock.classList.remove("-translate-y-[500px]");
+      logoutblock.classList.add("translate-y-[0px]");
+      logoutblock.classList.add("z-20");
+    } else if (logoutblock.classList.contains("translate-y-[0px]")) {
+      logoutblock.classList.remove("translate-y-[0px]");
+      logoutblock.classList.add("-translate-y-[500px]");
+    }
+  }
+</script>
+</div>
+{% endblock %}
