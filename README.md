@@ -1,20 +1,22 @@
-This project is bridge between Employees and Employer
+<h4>I have worked as an Frontend Developer in Crimson Innovative Technologies</h4>
+<h4>This is one of projects I have involved, I designed the web templates for this project</h4>
+<p>This project is a barrier between Employee and Employer</p>
 
-These all the Employee screens
-![pay1](https://github.com/Srikar-C/Payrollsys/assets/107094861/39983eb7-3a42-4436-ab0d-1cc80576d58b)
-![pay2](https://github.com/Srikar-C/Payrollsys/assets/107094861/bef64ee5-85bc-4d01-a6df-dd25027afe75)
-![pay3](https://github.com/Srikar-C/Payrollsys/assets/107094861/ac44d8ea-fbf9-4cf0-b128-d5fd8d887013)
-![pay4](https://github.com/Srikar-C/Payrollsys/assets/107094861/8871bb5b-54fa-4019-ad5c-48747faf7f13)
-![pay5](https://github.com/Srikar-C/Payrollsys/assets/107094861/ec08ba96-d6b9-4522-a1b4-7591312a4528)
-![pay6](https://github.com/Srikar-C/Payrollsys/assets/107094861/785a2ac4-7b20-48fc-89ff-4b3aedb6a437)
-![pay7](https://github.com/Srikar-C/Payrollsys/assets/107094861/8f3e7571-f875-4802-bf5b-22003dc92521)
+<h3>These are the screens for Employee</h3>
+![pay1](https://github.com/Srikar-C/Payrollsys/assets/107094861/57075229-690e-47ee-b3db-f6149b510949)
+![pay2](https://github.com/Srikar-C/Payrollsys/assets/107094861/69d00af2-2746-40b9-8ad4-b49ea25ca726)
+![pay3](https://github.com/Srikar-C/Payrollsys/assets/107094861/25496a53-0b5a-4a34-8454-5a077875690c)
+![pay4](https://github.com/Srikar-C/Payrollsys/assets/107094861/c835770c-b1f7-48ca-a411-527e898fbd72)
+![pay5](https://github.com/Srikar-C/Payrollsys/assets/107094861/7565961c-2928-4524-ac7b-0a170cb405c5)
+![pay6](https://github.com/Srikar-C/Payrollsys/assets/107094861/32266c85-285b-4287-945b-51b9534ffd6d)
+![pay7](https://github.com/Srikar-C/Payrollsys/assets/107094861/9c9c7bbf-9eb6-49db-923a-eb73de3443f5)
 
-These all the Employer screens
-![pay8](https://github.com/Srikar-C/Payrollsys/assets/107094861/1c1ed9a1-f69d-423d-8c49-174a19b6c43f)
-![pay9](https://github.com/Srikar-C/Payrollsys/assets/107094861/1b89fdab-7477-4186-bc74-71261c15d8ab)
-![pay10](https://github.com/Srikar-C/Payrollsys/assets/107094861/e2c8ee95-438d-4151-98ba-7c944321d900)
-![pay11](https://github.com/Srikar-C/Payrollsys/assets/107094861/9dc8987d-b885-4994-8c2f-c7ce7be8f416)
-![pay12](https://github.com/Srikar-C/Payrollsys/assets/107094861/a830c5e8-d014-45ae-b401-8efdffa89ba8)
-![pay13](https://github.com/Srikar-C/Payrollsys/assets/107094861/2e407222-33d4-4caa-b5b2-1512b86f96a7)
-![pay14](https://github.com/Srikar-C/Payrollsys/assets/107094861/de5b8d65-d7c4-431e-b9f8-23af9b3cb7c9)
-![pay15](https://github.com/Srikar-C/Payrollsys/assets/107094861/9ea4e8c7-cf5c-4b2d-bd5e-cad657873224)
+<h3>These are the screens for Employer</h3>
+![pay8](https://github.com/Srikar-C/Payrollsys/assets/107094861/4e37d389-f8b3-4446-956f-bcb1a6336e03)
+![pay9](https://github.com/Srikar-C/Payrollsys/assets/107094861/cde92b43-4fa8-4ee4-baba-2c2fafd1053a)
+![pay10](https://github.com/Srikar-C/Payrollsys/assets/107094861/476e6b97-dc3a-4c43-917c-1b6ad4ffdff2)
+![pay11](https://github.com/Srikar-C/Payrollsys/assets/107094861/c396ee56-af1d-499f-b318-e392085e4d8f)
+![pay12](https://github.com/Srikar-C/Payrollsys/assets/107094861/33721b9b-4cf5-4fb2-a82f-a3078c73cb7e)
+![pay13](https://github.com/Srikar-C/Payrollsys/assets/107094861/7353c5a8-de7f-44ac-ae36-103e5d3d5a7b)
+![pay14](https://github.com/Srikar-C/Payrollsys/assets/107094861/1acd6a7d-e17c-4876-ad22-51db4e7416f0)
+![pay15](https://github.com/Srikar-C/Payrollsys/assets/107094861/135332c6-c466-41e1-838e-7eccd3d54c50)
