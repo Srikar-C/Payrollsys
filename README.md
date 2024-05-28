@@ -3,6 +3,7 @@
 <p>This project is a barrier between Employee and Employer</p>
 
 <h3>These are the screens for Employee</h3>
+
 ![pay1](https://github.com/Srikar-C/Payrollsys/assets/107094861/57075229-690e-47ee-b3db-f6149b510949)
 ![pay2](https://github.com/Srikar-C/Payrollsys/assets/107094861/69d00af2-2746-40b9-8ad4-b49ea25ca726)
 ![pay3](https://github.com/Srikar-C/Payrollsys/assets/107094861/25496a53-0b5a-4a34-8454-5a077875690c)
@@ -12,6 +13,7 @@
 ![pay7](https://github.com/Srikar-C/Payrollsys/assets/107094861/9c9c7bbf-9eb6-49db-923a-eb73de3443f5)
 
 <h3>These are the screens for Employer</h3>
+
 ![pay8](https://github.com/Srikar-C/Payrollsys/assets/107094861/4e37d389-f8b3-4446-956f-bcb1a6336e03)
 ![pay9](https://github.com/Srikar-C/Payrollsys/assets/107094861/cde92b43-4fa8-4ee4-baba-2c2fafd1053a)
 ![pay10](https://github.com/Srikar-C/Payrollsys/assets/107094861/476e6b97-dc3a-4c43-917c-1b6ad4ffdff2)
